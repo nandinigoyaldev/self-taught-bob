@@ -1,16 +1,32 @@
-# My Website
+# Self Taught Bob
 
-This is a responsive website built using **HTML, SASS (CSS), and JavaScript**.  
-It includes a **navbar, hero section, cards, and content sections**, making it a simple yet elegant web project.  
+Self Taught Bob is a polished personal portfolio landing page that highlights code, content, social links, and contact details in a clean responsive layout.
 
-## Features
-- Responsive design  
-- Smooth animations  
-- Organized SCSS structure  
+## What’s inside
 
-## Technologies Used
-- HTML  
-- SASS (CSS)  
-- JavaScript  
+- A professional hero section with clear branding
+- Featured project cards and a simple journey timeline
+- Skill blocks for frontend, content, code, and brand identity
+- Social cards for LinkedIn, GitHub code, Instagram, and YouTube
+- Light and dark theme toggle
+- Mobile-friendly navigation
+- Email copy action and back-to-top helper
+- Subtle scroll reveal animations
 
-Feel free to explore and modify the project! 🚀  
+## Socials
+
+- LinkedIn: [linkedin.com/in/goyaljiiiiii](https://linkedin.com/in/goyaljiiiiii)
+- GitHub: [github.com/goyaljiiiiii](https://github.com/goyaljiiiiii)
+- Instagram: [instagram.com/self_taugh_bob](https://instagram.com/self_taugh_bob)
+- YouTube: Self Taught Bob
+
+## Tech
+
+- HTML
+- CSS / SCSS
+- JavaScript
+
+## Notes
+
+- The main page lives in [index.html](index.html) and points to the shared assets in [code/](code).
+- You can update the social URLs or email in the homepage markup whenever your profiles change.

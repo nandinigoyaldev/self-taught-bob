@@ -1,96 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <!-- Meta Information -->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description"
-            content="Welcome to MyWebsite - A place to discover amazing content, services, and more.">
-        <meta name="keywords" content="web development, SEO, design, services">
-        <meta name="author" content="Nandini">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Self Taught Bob is a personal portfolio focused on code, content, and public learning.">
+    <meta name="keywords" content="Self Taught Bob, portfolio, frontend developer, social links, code showcase">
+    <meta name="author" content="Self Taught Bob">
+    <meta property="og:title" content="Self Taught Bob | Personal Portfolio">
+    <meta property="og:description" content="A polished personal portfolio with socials, projects, and a clean modern interface.">
+    <title>Self Taught Bob | Portfolio</title>
+    <link rel="stylesheet" href="index.css">
+</head>
 
-        <!-- Open Graph Meta Tags (for social media previews) -->
-        <meta property="og:title" content="Awesome Website - Discover Amazing Content">
-        <meta property="og:description" content="We provide web development, design, and SEO services.">
+<body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
 
-        <title>Awesome Website | Home</title>
-        <link rel="stylesheet" href="index.css">
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
 
-        <!-- Favicon -->
-        <!-- I dont have one duhhh -->
-    </head>
-
-    <body>
-
-        <!-- Navbar -->
-        <nav class="navbar">
-            <div class="logo">MyWebsite</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+    <header class="site-header">
+        <nav class="navbar" aria-label="Primary">
+            <a class="logo" href="#home">Self Taught Bob</a>
+            <button class="menu-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu" title="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-panel" id="primary-navigation">
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#socials">Socials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="theme-toggle" type="button" aria-pressed="false">Theme</button>
+            </div>
         </nav>
+    </header>
 
-        <!-- Hero Section -->
-        <header id="home" class="hero">
-            <h1 class="fade-in">Welcome to My Website</h1>
-            <p class="fade-in">Discover amazing content and explore.</p>
-            <a href="#services" class="btn">Get Started</a>
-        </header>
-
-        <!-- Cards Section -->
-        <section class="container">
-            <div class="card fade-slide">
-                <div class="img img-one" aria-label="Image related to Title One"></div>
-                <h3>Title One</h3>
-                <p>Some description about this card.</p>
+    <main id="main-content">
+        <section id="home" class="hero section-shell reveal">
+            <div class="hero-copy">
+                <p class="eyebrow">Self Taught Bob</p>
+                <h1>Build in public. Look professional. Stay memorable.</h1>
+                <p class="hero-text">This portfolio puts your social presence, code work, and personal brand in one place. It is structured to feel sharp, modern, and credible from the first scroll.</p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="#projects">See work</a>
+                    <a class="btn btn-secondary" href="#socials">Open socials</a>
+                </div>
+                <div class="hero-note">
+                    <span>Current mode</span>
+                    <strong>Building a cleaner online identity with code, content, and consistency.</strong>
+                </div>
             </div>
-            <div class="card fade-slide">
-                <div class="img img-two" aria-label="Image related to Title Two"></div>
-                <h3>Title Two</h3>
-                <p>Some description about this card.</p>
-            </div>
-            <div class="card fade-slide">
-                <div class="img img-three" aria-label="Image related to Title Three"></div>
-                <h3>Title Three</h3>
-                <p>Some description about this card.</p>
-            </div>
-            <div class="card fade-slide">
-                <div class="img img-four" aria-label="Image related to Title Four"></div>
-                <h3>Title Four</h3>
-                <p>Some description about this card.</p>
+            <div class="hero-card reveal delay-1">
+                <div class="profile-badge">STB</div>
+                <p class="hero-card-label">Current focus</p>
+                <h2>Building in public</h2>
+                <p>Front-end experiments, code repos, social content, and a consistent brand identity across every channel.</p>
+                <div class="hero-stats">
+                    <div><strong>4</strong><span>social channels</span></div>
+                    <div><strong>1</strong><span>brand voice</span></div>
+                    <div><strong>100%</strong><span>mobile friendly</span></div>
+                </div>
+                <div class="hero-cta-row">
+                    <a class="mini-link" href="mailto:nandunandinigoyal@gmail.com">Email me</a>
+                    <button class="mini-link ghost" type="button" data-copy-email>Copy email</button>
+                </div>
             </div>
         </section>
 
-        <!-- About Section -->
-        <section id="about" class="content-section fade-slide">
-            <h2>About Us</h2>
-            <p>We are a team of passionate developers creating amazing websites.</p>
+        <section id="projects" class="projects section-shell reveal">
+            <div class="section-heading">
+                <p class="eyebrow">Featured work</p>
+                <h2>Three strong entry points into the brand.</h2>
+            </div>
+            <div class="project-grid">
+                <article class="project-card">
+                    <p class="project-kicker">01 / Personal site</p>
+                    <h3>Portfolio landing page</h3>
+                    <p>A clean, responsive homepage that highlights identity, socials, and contact details without looking generic.</p>
+                    <div class="chip-row">
+                        <span>Responsive</span><span>Theme toggle</span><span>Scroll reveal</span>
+                    </div>
+                </article>
+                <article class="project-card featured">
+                    <p class="project-kicker">02 / Code + content</p>
+                    <h3>Public build showcase</h3>
+                    <p>Designed to point people toward your code repository, short-form content, and long-form learning journey.</p>
+                    <div class="chip-row">
+                        <span>GitHub</span><span>YouTube</span><span>Instagram</span>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <p class="project-kicker">03 / Brand system</p>
+                    <h3>Self Taught Bob identity</h3>
+                    <p>A simple visual system that keeps the personal handle recognizable across every profile and link.</p>
+                    <div class="chip-row">
+                        <span>Social links</span><span>Typography</span><span>Consistent CTA</span>
+                    </div>
+                </article>
+            </div>
         </section>
 
-        <!-- Services Section -->
-        <section id="services" class="content-section fade-slide">
-            <h2>Our Services</h2>
-            <p>We provide web development, design, and SEO services.</p>
+        <section id="about" class="content-grid section-shell reveal">
+            <article class="content-card">
+                <p class="eyebrow">About</p>
+                <h2>Simple, sharp, and professional.</h2>
+                <p>Self Taught Bob keeps the personality of the handle while presenting it with a clean, trustworthy interface. The focus stays on identity, links, and work.</p>
+            </article>
+            <article class="content-card accent-card">
+                <p class="eyebrow">Brand</p>
+                <h2>Built for a public creator workflow.</h2>
+                <p>The layout supports LinkedIn, GitHub, Instagram, and YouTube while staying easy to expand with future projects and posts.</p>
+            </article>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="content-section fade-slide">
-            <h2>Contact Us</h2>
-            <p>Email: <a href="mailto:contact@mywebsite.com">nandunandinigoyal@gmail.com</a></p>
+        <section id="skills" class="skills section-shell reveal">
+            <div class="section-heading">
+                <p class="eyebrow">Skills</p>
+                <h2>Tools and topics you can feature right away.</h2>
+            </div>
+            <div class="skill-grid">
+                <div class="skill-card"><strong>Frontend</strong><span>HTML, CSS, responsive UI</span></div>
+                <div class="skill-card"><strong>Content</strong><span>Short-form social growth</span></div>
+                <div class="skill-card"><strong>Code</strong><span>GitHub projects and demos</span></div>
+                <div class="skill-card"><strong>Brand</strong><span>Identity and consistency</span></div>
+            </div>
         </section>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <p>&copy; 2025 MyWebsite. All Rights Reserved.</p>
-        </footer>
+        <section id="journey" class="timeline section-shell reveal">
+            <div class="section-heading">
+                <p class="eyebrow">Journey</p>
+                <h2>A simple roadmap people can understand in seconds.</h2>
+            </div>
+            <div class="timeline-list">
+                <div class="timeline-item">
+                    <span>1</span>
+                    <div>
+                        <h3>Learn in public</h3>
+                        <p>Share the process, not just the final result.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span>2</span>
+                    <div>
+                        <h3>Ship small builds</h3>
+                        <p>Keep projects fast, visible, and useful.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span>3</span>
+                    <div>
+                        <h3>Grow the brand</h3>
+                        <p>Make every profile feel like part of one identity.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <!-- JavaScript (Defer for better performance) -->
-        <script defer src="script.js"></script>
+        <section id="socials" class="socials section-shell reveal">
+            <div class="section-heading">
+                <p class="eyebrow">Socials</p>
+                <h2>Find me where I post, build, and learn.</h2>
+            </div>
+            <div class="social-grid">
+                <a class="social-card" href="https://linkedin.com/in/goyaljiiiiii" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile">
+                    <span class="social-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" role="img"><path d="M6.94 6.5A2.44 2.44 0 1 1 2.06 6.5a2.44 2.44 0 0 1 4.88 0ZM2.39 8.98h4.94V22H2.39V8.98Zm7.9 0h4.73v1.78h.07c.66-1.25 2.27-2.57 4.68-2.57 5 0 5.92 3.29 5.92 7.57V22h-4.93v-5.95c0-1.42-.03-3.26-1.98-3.26-1.98 0-2.28 1.54-2.28 3.15V22h-4.93V8.98Z"/></svg>
+                    </span>
+                    <div>
+                        <h3>LinkedIn</h3>
+                        <p>linkedin.com/in/goyaljiiiiii</p>
+                    </div>
+                </a>
+                <a class="social-card" href="https://github.com/goyaljiiiiii" target="_blank" rel="noopener noreferrer" aria-label="Open GitHub code repository profile">
+                    <span class="social-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" role="img"><path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.76-.24.76-.53v-1.9c-3.1.67-3.76-1.28-3.76-1.28-.51-1.31-1.24-1.66-1.24-1.66-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.16 1.71 1.16.99 1.7 2.6 1.21 3.24.93.1-.72.39-1.21.71-1.49-2.47-.28-5.08-1.23-5.08-5.48 0-1.21.43-2.2 1.14-2.98-.11-.28-.49-1.42.11-2.95 0 0 .93-.3 3.05 1.14a10.5 10.5 0 0 1 5.56 0c2.12-1.44 3.05-1.14 3.05-1.14.6 1.53.22 2.67.11 2.95.71.78 1.14 1.77 1.14 2.98 0 4.26-2.61 5.2-5.1 5.47.4.35.77 1.04.77 2.1v3.1c0 .3.2.64.77.53A11.2 11.2 0 0 0 12 .8Z"/></svg>
+                    </span>
+                    <div>
+                        <h3>GitHub</h3>
+                        <p>github.com/goyaljiiiiii</p>
+                    </div>
+                </a>
+                <a class="social-card" href="https://instagram.com/self_taugh_bob" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram profile">
+                    <span class="social-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" role="img"><path d="M7.5 2A5.5 5.5 0 0 0 2 7.5v9A5.5 5.5 0 0 0 7.5 22h9a5.5 5.5 0 0 0 5.5-5.5v-9A5.5 5.5 0 0 0 16.5 2h-9Zm0 1.75h9A3.75 3.75 0 0 1 20.25 7.5v9a3.75 3.75 0 0 1-3.75 3.75h-9A3.75 3.75 0 0 1 3.75 16.5v-9A3.75 3.75 0 0 1 7.5 3.75Zm9.94 1.13a1.19 1.19 0 1 0 0 2.38 1.19 1.19 0 0 0 0-2.38ZM12 6.6a5.4 5.4 0 1 0 0 10.8A5.4 5.4 0 0 0 12 6.6Zm0 1.75a3.65 3.65 0 1 1 0 7.3 3.65 3.65 0 0 1 0-7.3Z"/></svg>
+                    </span>
+                    <div>
+                        <h3>Instagram</h3>
+                        <p>instagram.com/self_taugh_bob</p>
+                    </div>
+                </a>
+                <a class="social-card" href="https://www.youtube.com/@selftaughtbob" target="_blank" rel="noopener noreferrer" aria-label="Open YouTube channel">
+                    <span class="social-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" role="img"><path d="M21.7 7.1a2.5 2.5 0 0 0-1.75-1.77C18.4 5 12 5 12 5s-6.4 0-7.95.33A2.5 2.5 0 0 0 2.3 7.1 26.2 26.2 0 0 0 2 12a26.2 26.2 0 0 0 .3 4.9 2.5 2.5 0 0 0 1.75 1.77C5.6 19 12 19 12 19s6.4 0 7.95-.33a2.5 2.5 0 0 0 1.75-1.77A26.2 26.2 0 0 0 22 12a26.2 26.2 0 0 0-.3-4.9Zm-9.7 7.8V9.1l5 2.9-5 2.9Z"/></svg>
+                    </span>
+                    <div>
+                        <h3>YouTube</h3>
+                        <p>Self Taught Bob</p>
+                    </div>
+                </a>
+            </div>
+        </section>
 
-    </body>
+        <section id="contact" class="contact section-shell reveal">
+            <div>
+                <p class="eyebrow">Contact</p>
+                <h2>Let’s connect on a build, collab, or idea.</h2>
+            </div>
+            <div class="contact-actions">
+                <a class="btn btn-primary" href="mailto:nandunandinigoyal@gmail.com">nandunandinigoyal@gmail.com</a>
+                <button class="btn btn-secondary" type="button" data-copy-email>Copy email</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Self Taught Bob. Built to feel clear, credible, and easy to grow.</p>
+    </footer>
+
+    <button class="back-to-top" type="button" aria-label="Back to top">Top</button>
+    <div class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <script defer src="script.js"></script>
+</body>
 
 </html>
