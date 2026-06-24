@@ -146,9 +146,24 @@ export default function Window({
         animate={isMinimized ? { 
           opacity: 0, 
           scale: 0, 
-          x: window.innerWidth / 2 - (size.w / 2), 
+          x: (() => {
+            // Calculate approximate center of the specific dock icon
+            const APPS = ['youtube', 'github', 'twitter', 'linkedin', 'projects', 'terminal', 'notes', 'calculator', 'camera', 'about', 'settings'];
+            const index = APPS.indexOf(id);
+            if (index === -1) return window.innerWidth / 2 - (size.w / 2);
+            const iconWidth = 50;
+            const gap = 10;
+            const padding = 10;
+            const totalWidth = APPS.length * iconWidth + (APPS.length - 1) * gap + padding * 2;
+            const startX = window.innerWidth / 2 - totalWidth / 2;
+            const iconCenterX = startX + padding + index * (iconWidth + gap) + (iconWidth / 2);
+            // Window is absolutely positioned, so x is the left edge of the window.
+            // To make the center of the window align with the center of the icon:
+            return iconCenterX - (size.w / 2);
+          })(), 
           y: window.innerHeight, 
-          filter: 'blur(10px)'
+          filter: 'blur(10px)',
+          borderRadius: '50%'
         } : { 
           opacity: 1, 
           scale: 1, 
