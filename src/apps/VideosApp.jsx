@@ -1,0 +1,1 @@
+export default function VideosApp() { return <div style={{padding: '20px', color: 'white'}}>Welcome to VideosApp</div>; }

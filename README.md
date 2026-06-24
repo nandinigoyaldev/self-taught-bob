@@ -1,32 +1,16 @@
-# Self Taught Bob
+# React + Vite
 
-Self Taught Bob is a polished personal portfolio landing page that highlights code, content, social links, and contact details in a clean responsive layout.
+This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
-## What’s inside
+Currently, two official plugins are available:
 
-- A professional hero section with clear branding
-- Featured project cards and a simple journey timeline
-- Skill blocks for frontend, content, code, and brand identity
-- Social cards for LinkedIn, GitHub code, Instagram, and YouTube
-- Light and dark theme toggle
-- Mobile-friendly navigation
-- Email copy action and back-to-top helper
-- Subtle scroll reveal animations
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## Socials
+## React Compiler
 
-- LinkedIn: [linkedin.com/in/goyaljiiiiii](https://linkedin.com/in/goyaljiiiiii)
-- GitHub: [github.com/goyaljiiiiii](https://github.com/goyaljiiiiii)
-- Instagram: [instagram.com/self_taugh_bob](https://instagram.com/self_taugh_bob)
-- YouTube: Self Taught Bob
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Tech
+## Expanding the Oxlint configuration
 
-- HTML
-- CSS / SCSS
-- JavaScript
-
-## Notes
-
-- The main page lives in [index.html](index.html) and points to the shared assets in [code/](code).
-- You can update the social URLs or email in the homepage markup whenever your profiles change.
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.

@@ -1,0 +1,1 @@
+export default function AchievementsApp() { return <div style={{padding: '20px', color: 'white'}}>Welcome to AchievementsApp</div>; }
