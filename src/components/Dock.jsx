@@ -1,11 +1,15 @@
 import { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Folder, Terminal, User, Settings as SettingsIcon, Camera, Calculator, FileText, Music, FolderOpen, Compass } from 'lucide-react';
+import { Folder, Terminal, User, Settings as SettingsIcon, Camera, Calculator, FileText, Music, FolderOpen, Compass, Sun, Calendar, Activity, Gamepad2 } from 'lucide-react';
 import { FaTwitter, FaLinkedin, FaYoutube, FaGithub, FaChrome } from 'react-icons/fa';
 
 export const APPS = [
   { id: 'finder', name: 'Finder', icon: Compass, color: '#3b82f6' },
   { id: 'browser', name: 'Browser', icon: FaChrome, color: '#ef4444' },
+  { id: 'weather', name: 'Weather', icon: Sun, color: '#fde047' },
+  { id: 'calendar', name: 'Calendar', icon: Calendar, color: '#ef4444' },
+  { id: 'activity', name: 'Activity Monitor', icon: Activity, color: '#22c55e' },
+  { id: 'snake', name: 'Snake Game', icon: Gamepad2, color: '#10b981' },
   { id: 'youtube', name: 'YouTube', icon: FaYoutube, color: '#FF0000' },
   { id: 'music', name: 'Music', icon: Music, color: '#c084fc' },
   { id: 'github', name: 'GitHub', icon: FaGithub, color: '#ffffff' },

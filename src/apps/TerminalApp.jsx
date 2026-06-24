@@ -23,7 +23,7 @@ const BOOT_SEQUENCE = [
   "Type 'help' to see available commands."
 ];
 
-export default function TerminalApp() {
+export default function TerminalApp({ openApp }) {
   const [history, setHistory] = useState([]);
   const [input, setInput] = useState('');
   const [cwd, setCwd] = useState('~');
@@ -114,6 +114,21 @@ export default function TerminalApp() {
             color = '#f4f4f5';
           } else {
             response = `cat: ${file}: No such file or directory`;
+            color = '#ef4444';
+          }
+          break;
+        case 'open':
+          const appToOpen = args[1];
+          if (appToOpen) {
+            if (openApp) {
+              openApp(appToOpen);
+              response = `Opening ${appToOpen}...`;
+            } else {
+              response = `Cannot open ${appToOpen} from this context.`;
+              color = '#ef4444';
+            }
+          } else {
+            response = 'open: missing app name';
             color = '#ef4444';
           }
           break;

@@ -13,7 +13,8 @@ export default function Window({
   defaultWidth = 600,
   defaultHeight = 400
 }) {
-  const [pos, setPos] = useState({ x: window.innerWidth / 2 - defaultWidth / 2 + (zIndex * 20), y: window.innerHeight / 2 - defaultHeight / 2 + (zIndex * 20) });
+  const offset = (zIndex % 10) * 20;
+  const [pos, setPos] = useState({ x: window.innerWidth / 2 - defaultWidth / 2 + offset, y: window.innerHeight / 2 - defaultHeight / 2 + offset });
   const [size, setSize] = useState({ w: defaultWidth, h: defaultHeight });
   const [isResizing, setIsResizing] = useState(false);
   const [isMaximized, setIsMaximized] = useState(false);
@@ -76,9 +77,10 @@ export default function Window({
       }
       setSnapPreview(null);
     } else {
-      // Update pos manually since we use controlled drag or let framer handle it.
-      // We will let framer-motion handle the transform for dragging, but save the position.
-      // To keep it simple, we use framer motion's drag on the container but we manage layout state.
+      if (windowRef.current) {
+        const rect = windowRef.current.getBoundingClientRect();
+        setPos({ x: rect.x, y: rect.y });
+      }
     }
   };
 

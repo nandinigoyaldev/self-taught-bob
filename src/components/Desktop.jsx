@@ -23,6 +23,10 @@ import GitHubApp from '../apps/GitHubApp.jsx';
 import MusicApp from '../apps/MusicApp.jsx';
 import FinderApp from '../apps/FinderApp.jsx';
 import BrowserApp from '../apps/BrowserApp.jsx';
+import WeatherApp from '../apps/WeatherApp.jsx';
+import CalendarApp from '../apps/CalendarApp.jsx';
+import ActivityMonitorApp from '../apps/ActivityMonitorApp.jsx';
+import SnakeApp from '../apps/SnakeApp.jsx';
 
 const DEFAULT_WALLPAPER = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop";
 
@@ -41,6 +45,10 @@ const appComponents = {
   music: MusicApp,
   finder: FinderApp,
   browser: BrowserApp,
+  weather: WeatherApp,
+  calendar: CalendarApp,
+  activity: ActivityMonitorApp,
+  snake: SnakeApp,
 };
 
 function InteractiveWallpaper({ customWallpaper }) {
