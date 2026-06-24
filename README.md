@@ -1,16 +1,55 @@
-# React + Vite
+# NandiniOS 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A sleek, fully functional, web-based operating system designed to serve as an interactive developer portfolio. Built entirely with React and Vite.
 
-Currently, two official plugins are available:
+## ✨ Features
+- **Glassmorphism UI**: Beautiful, frosted glass aesthetic across the entire OS.
+- **Window Management**: Drag, minimize, maximize, and resize windows just like a real operating system.
+- **Real Browser APIs Integration**:
+  - 🔔 Native desktop notifications (via Notification API)
+  - 📋 Real clipboard integration (via Clipboard API)
+  - 📸 Working webcam app (via WebRTC)
+  - 🌐 Browser history integration for navigation
+- **Customization**: Upload your own wallpaper or use the default aesthetic theme. Settings persist via LocalStorage.
+- **Functional Apps**:
+  - **Terminal**: A simulated command line interface.
+  - **Calculator**: A working desktop calculator.
+  - **Notes**: A text editor that auto-saves your progress.
+  - **Projects / Mission / Journal**: Interactive components to explore portfolio contents.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠 Tech Stack
+- **Frontend Framework**: React 18
+- **Build Tool**: Vite
+- **Icons**: Lucide React
+- **Styling**: Vanilla CSS (CSS Variables, Flexbox, CSS Grid)
 
-## React Compiler
+## 🚀 Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
+Make sure you have Node.js installed on your machine.
 
-## Expanding the Oxlint configuration
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/nandinios.git
+   ```
+2. Navigate into the directory:
+   ```bash
+   cd nandinios
+   ```
+3. Install the dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+5. Open your browser to the local URL (usually `http://localhost:5173`).
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## 🤝 Contributing
+Contributions, issues, and feature requests are welcome!
+Feel free to fork the repository, make your changes, and submit a pull request.
+
+## 📝 License
+This project is open source and available under the [MIT License](LICENSE).

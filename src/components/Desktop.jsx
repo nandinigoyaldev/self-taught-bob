@@ -72,6 +72,10 @@ export default function Desktop() {
     setOpenApps(apps => apps.filter(a => a.id !== appId));
   };
 
+  const closeAllApps = () => {
+    setOpenApps([]);
+  };
+
   const minimizeApp = (appId) => {
     setOpenApps(apps => apps.map(a => 
       a.id === appId ? { ...a, minimized: true } : a
@@ -143,7 +147,11 @@ export default function Desktop() {
         onChange={handleWallpaperChange} 
       />
       
-      <TopBar onSearchClick={() => setIsSearchOpen(true)} />
+      <TopBar 
+        onSearchClick={() => setIsSearchOpen(true)} 
+        openApp={openApp}
+        closeAllApps={closeAllApps}
+      />
 
       {/* Desktop Icons */}
       <div className="desktop-icons" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', padding: '1rem', position: 'absolute', top: '40px', left: '10px' }}>
