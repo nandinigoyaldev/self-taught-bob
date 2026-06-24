@@ -4,11 +4,11 @@
   /* Color Palette */
   --bg-dark: #09090b;
   --bg-graphite: #18181b;
-  --bg-glass: rgba(24, 24, 27, 0.65);
-  --bg-glass-light: rgba(39, 39, 42, 0.4);
+  --bg-glass: rgba(24, 24, 27, 0.45);
+  --bg-glass-light: rgba(39, 39, 42, 0.25);
   
   --accent-blue: #3b82f6;
-  --accent-blue-glow: rgba(59, 130, 246, 0.5);
+  --accent-blue-glow: rgba(59, 130, 246, 0.6);
   --accent-purple: #8b5cf6;
   --accent-cyan: #06b6d4;
   
@@ -16,14 +16,15 @@
   --text-secondary: #a1a1aa;
   --text-muted: #71717a;
   
-  --border-glass: rgba(255, 255, 255, 0.1);
-  --border-glass-light: rgba(255, 255, 255, 0.2);
+  --border-glass: rgba(255, 255, 255, 0.15);
+  --border-glass-light: rgba(255, 255, 255, 0.05);
+  --border-highlight: rgba(255, 255, 255, 0.3);
 
   /* Shadows */
   --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 10px 15px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
-  --shadow-glow: 0 0 15px var(--accent-blue-glow);
+  --shadow-lg: 0 25px 35px -5px rgba(0, 0, 0, 0.6), 0 15px 15px -5px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 20px var(--accent-blue-glow);
 
   /* Layout */
   --topbar-height: 32px;
@@ -42,15 +43,43 @@ body {
   color: var(--text-primary);
   overflow: hidden;
   user-select: none; /* OS feel */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Noise overlay for premium glassmorphism */
+.noise-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
 /* Utilities */
 .glass-panel {
   background: var(--bg-glass);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
   border: 1px solid var(--border-glass);
   box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+/* Light beam border effect */
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-highlight), transparent);
+  opacity: 0.5;
+  z-index: 1;
 }
 
 .text-gradient {
@@ -114,7 +143,7 @@ body {
   height: 100vh;
   position: relative;
   overflow: hidden;
-  background: radial-gradient(circle at 50% 0%, #1e1b4b, var(--bg-dark) 60%);
+  background: radial-gradient(circle at 50% 0%, #1e1b4b, var(--bg-dark) 70%);
 }
 
 .wallpaper-particles {
@@ -126,8 +155,15 @@ body {
   z-index: 0;
   pointer-events: none;
   background-image: 
-    radial-gradient(circle at 15% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+    radial-gradient(circle at 15% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+  animation: breathe 10s infinite alternate ease-in-out;
+}
+
+@keyframes breathe {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.05); opacity: 1; }
 }
 
 /* Top Bar */
@@ -144,6 +180,8 @@ body {
   font-size: 0.85rem;
   font-weight: 500;
   z-index: 100;
+  background: rgba(9, 9, 11, 0.4);
+  backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-glass);
 }
 
@@ -158,32 +196,37 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: color 0.2s;
+  transition: color 0.2s, text-shadow 0.2s;
 }
 
 .top-bar-item:hover {
   color: white;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
 }
 
 /* Dock */
 .dock-container {
   position: absolute;
-  bottom: 10px;
+  bottom: 15px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   align-items: flex-end;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  border-radius: 20px;
+  gap: 0.6rem;
+  padding: 0.6rem;
+  border-radius: 24px;
   z-index: 100;
+  background: var(--bg-glass);
+  backdrop-filter: blur(30px) saturate(200%);
+  border: 1px solid var(--border-glass-light);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
 }
 
 .dock-icon {
   width: 50px;
   height: 50px;
-  border-radius: 12px;
-  background: var(--bg-graphite);
+  border-radius: 14px;
+  background: linear-gradient(180deg, var(--bg-graphite), #0f0f11);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -191,60 +234,71 @@ body {
   position: relative;
   transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   border: 1px solid var(--border-glass);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.1), 0 4px 6px rgba(0,0,0,0.3);
 }
 
 .dock-icon svg {
   color: var(--text-primary);
   width: 24px;
   height: 24px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
 }
 
 .dock-icon:hover {
-  transform: scale(1.3) translateY(-10px);
-  margin: 0 10px;
+  transform: scale(1.3) translateY(-12px);
+  margin: 0 12px;
   z-index: 10;
-  border-color: var(--accent-blue);
-  box-shadow: var(--shadow-glow);
+  border-color: rgba(255,255,255,0.3);
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.3), var(--shadow-glow);
 }
 
 .dock-icon.active::after {
   content: '';
   position: absolute;
-  bottom: -6px;
+  bottom: -8px;
   left: 50%;
   transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
-  background: var(--text-primary);
+  background: var(--accent-cyan);
+  box-shadow: 0 0 5px var(--accent-cyan);
 }
 
 /* Window Manager */
 .os-window {
   position: absolute;
-  border-radius: 12px;
+  border-radius: 14px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   box-shadow: var(--shadow-lg);
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  /* The transition will be handled by framer-motion mostly, but we set a fallback */
+  background: var(--bg-glass);
+  backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid var(--border-glass);
 }
 
-.os-window.minimized {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(50px) scale(0.9);
+/* Active window state (focused) */
+.os-window.active-window {
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.15);
+}
+
+.os-window.inactive-window {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+  opacity: 0.95;
+  filter: grayscale(10%);
 }
 
 .window-header {
-  height: 38px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 1rem;
   cursor: grab;
-  border-bottom: 1px solid var(--border-glass);
-  background: rgba(24, 24, 27, 0.8);
+  border-bottom: 1px solid var(--border-glass-light);
+  background: rgba(15, 15, 18, 0.6);
 }
 
 .window-header:active {
@@ -257,79 +311,102 @@ body {
 }
 
 .window-control {
-  width: 12px;
-  height: 12px;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
   cursor: pointer;
+  position: relative;
+  transition: opacity 0.2s;
+  border: 1px solid rgba(0,0,0,0.2);
 }
 
-.control-close { background: #ef4444; }
-.control-minimize { background: #eab308; }
-.control-maximize { background: #22c55e; }
+.window-control:hover {
+  opacity: 0.8;
+}
+
+.control-close { background: #ef4444; box-shadow: inset 0 1px 1px rgba(255,100,100,0.5); }
+.control-minimize { background: #eab308; box-shadow: inset 0 1px 1px rgba(255,200,100,0.5); }
+.control-maximize { background: #22c55e; box-shadow: inset 0 1px 1px rgba(100,255,100,0.5); }
 
 .window-title {
   font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-secondary);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  letter-spacing: 0.5px;
 }
 
 .window-content {
   flex: 1;
   overflow-y: auto;
-  background: rgba(9, 9, 11, 0.8);
+  background: rgba(9, 9, 11, 0.75); /* Darker inside for apps */
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
+  height: 10px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--bg-glass-light);
-  border-radius: 4px;
+  background: var(--border-glass);
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
+  background-color: rgba(255,255,255,0.3);
 }
 
 /* Dropdown Menus */
 .menu-dropdown {
   position: absolute;
-  top: var(--topbar-height);
-  left: 0;
-  background: var(--bg-glass);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  top: calc(var(--topbar-height) + 5px);
+  left: 10px;
+  background: rgba(24, 24, 27, 0.85);
+  backdrop-filter: blur(25px);
   border: 1px solid var(--border-glass);
-  border-radius: 0 0 8px 8px;
-  min-width: 200px;
-  box-shadow: var(--shadow-lg);
-  padding: 0.5rem;
+  border-radius: 8px;
+  min-width: 220px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);
+  padding: 0.4rem;
   z-index: 1000;
   display: flex;
   flex-direction: column;
+  transform-origin: top left;
+  animation: dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dropdownFadeIn {
+  from { opacity: 0; transform: scale(0.95) translateY(-5px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 .menu-item {
   padding: 0.5rem 1rem;
-  border-radius: 4px;
+  border-radius: 5px;
   color: var(--text-primary);
   cursor: pointer;
-  transition: background 0.1s;
+  transition: all 0.1s ease;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 0.9rem;
 }
 
 .menu-item:hover {
   background: var(--accent-blue);
+  color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .menu-divider {
   height: 1px;
   background: var(--border-glass);
-  margin: 0.25rem 0;
+  margin: 0.3rem 0;
 }
