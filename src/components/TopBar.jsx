@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Wifi, WifiOff, Battery, BatteryFull, BatteryMedium, BatteryLow, Search, Bell } from 'lucide-react';
 
-export default function TopBar() {
+export default function TopBar({ onSearchClick }) {
   const [time, setTime] = useState(new Date());
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const [connectionQuality, setConnectionQuality] = useState('good');
@@ -78,7 +78,7 @@ export default function TopBar() {
       </div>
       
       <div className="top-bar-right">
-        <div className="top-bar-item"><Search size={16} /></div>
+        <div className="top-bar-item" onClick={onSearchClick}><Search size={16} /></div>
         <div className="top-bar-item" title={isOnline ? `Online (${connectionQuality})` : 'Offline'}>
           {renderWifi()}
         </div>

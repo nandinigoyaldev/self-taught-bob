@@ -13,7 +13,9 @@ export default function Window({
   defaultHeight = 400
 }) {
   const [pos, setPos] = useState({ x: window.innerWidth / 2 - defaultWidth / 2 + (zIndex * 20), y: window.innerHeight / 2 - defaultHeight / 2 + (zIndex * 20) });
+  const [size, setSize] = useState({ w: defaultWidth, h: defaultHeight });
   const [isDragging, setIsDragging] = useState(false);
+  const [isResizing, setIsResizing] = useState(false);
   const [isMaximized, setIsMaximized] = useState(false);
 
   useEffect(() => {
@@ -23,14 +25,20 @@ export default function Window({
           x: prev.x + e.movementX,
           y: prev.y + e.movementY
         }));
+      } else if (isResizing && !isMaximized) {
+        setSize(prev => ({
+          w: Math.max(300, prev.w + e.movementX), // Min width 300
+          h: Math.max(200, prev.h + e.movementY)  // Min height 200
+        }));
       }
     };
     
     const handleMouseUp = () => {
       setIsDragging(false);
+      setIsResizing(false);
     };
 
-    if (isDragging) {
+    if (isDragging || isResizing) {
       window.addEventListener('mousemove', handleMouseMove);
       window.addEventListener('mouseup', handleMouseUp);
     }
@@ -39,7 +47,7 @@ export default function Window({
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [isDragging, isMaximized]);
+  }, [isDragging, isResizing, isMaximized]);
 
   return (
     <div 
@@ -47,12 +55,12 @@ export default function Window({
       style={{
         left: isMaximized ? 0 : pos.x,
         top: isMaximized ? 32 : pos.y, // 32px is TopBar height
-        width: isMaximized ? '100vw' : defaultWidth,
-        height: isMaximized ? 'calc(100vh - 32px)' : defaultHeight,
+        width: isMaximized ? '100vw' : size.w,
+        height: isMaximized ? 'calc(100vh - 32px)' : size.h,
         zIndex: zIndex,
         position: 'absolute',
         borderRadius: isMaximized ? '0' : '12px',
-        transition: isDragging ? 'none' : 'transform 0.2s ease, opacity 0.2s ease, width 0.3s ease, height 0.3s ease, left 0.3s ease, top 0.3s ease, border-radius 0.3s ease'
+        transition: (isDragging || isResizing) ? 'none' : 'transform 0.2s ease, opacity 0.2s ease, width 0.3s ease, height 0.3s ease, left 0.3s ease, top 0.3s ease, border-radius 0.3s ease'
       }}
       onMouseDownCapture={onFocus}
     >
@@ -72,6 +80,21 @@ export default function Window({
       <div className="window-content">
         {children}
       </div>
+      {!isMaximized && (
+        <div 
+          className="window-resize-handle"
+          onMouseDown={() => setIsResizing(true)}
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            right: 0,
+            width: '15px',
+            height: '15px',
+            cursor: 'nwse-resize',
+            zIndex: 10
+          }}
+        />
+      )}
     </div>
   );
 }

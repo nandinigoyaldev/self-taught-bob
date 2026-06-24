@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Camera, Video } from 'lucide-react';
+import { Camera, VideoOff } from 'lucide-react';
 
 export default function CameraApp() {
   const videoRef = useRef(null);
@@ -7,71 +7,56 @@ export default function CameraApp() {
   const [stream, setStream] = useState(null);
 
   useEffect(() => {
-    let activeStream = null;
-
-    async function setupCamera() {
+    async function startCamera() {
       try {
-        activeStream = await navigator.mediaDevices.getUserMedia({ video: true });
-        setStream(activeStream);
+        const mediaStream = await navigator.mediaDevices.getUserMedia({ video: true });
+        setStream(mediaStream);
         if (videoRef.current) {
-          videoRef.current.srcObject = activeStream;
+          videoRef.current.srcObject = mediaStream;
         }
       } catch (err) {
-        console.error("Camera error:", err);
-        setError('Camera access denied or unavailable.');
+        setError('Camera access denied or not available.');
       }
     }
+    
+    startCamera();
 
-    setupCamera();
-
-    // Cleanup on close
     return () => {
-      if (activeStream) {
-        activeStream.getTracks().forEach(track => track.stop());
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
       }
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div style={{ padding: '1rem', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#000' }}>
+    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', backgroundColor: 'black', color: 'white', position: 'relative' }}>
+      <div style={{ padding: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(24, 24, 27, 0.8)', zIndex: 10 }}>
+        <Camera size={20} color="#ec4899" />
+        <span style={{ fontWeight: 'bold' }}>Camera</span>
+      </div>
       
-      {error ? (
-        <div style={{ color: '#ef4444', textAlign: 'center' }}>
-          <Camera size={48} style={{ marginBottom: '1rem', opacity: 0.5 }} />
-          <p>{error}</p>
-          <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Please allow camera permissions in your browser.</p>
-        </div>
-      ) : (
-        <div style={{ position: 'relative', width: '100%', height: '100%', borderRadius: '8px', overflow: 'hidden', background: '#111' }}>
+      <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+        {error ? (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: 'gray' }}>
+            <VideoOff size={48} style={{ marginBottom: '1rem' }} />
+            <p>{error}</p>
+          </div>
+        ) : (
           <video 
             ref={videoRef} 
             autoPlay 
             playsInline 
-            muted 
-            style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'scaleX(-1)' }} 
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
           />
-          <div style={{ position: 'absolute', bottom: '20px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '1rem' }}>
-            <button style={shutterStyle}>
-              <div style={{ width: '40px', height: '40px', background: 'white', borderRadius: '50%' }} />
-            </button>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
 
+      <div style={{ position: 'absolute', bottom: '20px', left: '50%', transform: 'translateX(-50%)', zIndex: 10 }}>
+        <button style={{
+          width: '60px', height: '60px', borderRadius: '50%', background: 'white', border: '4px solid #ec4899', cursor: 'pointer', outline: 'none'
+        }} onClick={() => alert('Photo captured! (Mock)')} />
+      </div>
     </div>
   );
 }
-
-const shutterStyle = {
-  width: '60px',
-  height: '60px',
-  borderRadius: '50%',
-  border: '4px solid white',
-  background: 'transparent',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  cursor: 'pointer',
-  outline: 'none',
-  padding: 0
-};

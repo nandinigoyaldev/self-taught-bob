@@ -1,6 +1,8 @@
-import { Video, Folder, Target, Book, BarChart, Trophy, Terminal, User, Settings as SettingsIcon, Camera } from 'lucide-react';
+import { Video, Folder, Target, Book, BarChart, Trophy, Terminal, User, Settings as SettingsIcon, Camera, Calculator, FileText } from 'lucide-react';
 
 export const APPS = [
+  { id: 'calculator', name: 'Calculator', icon: Calculator, color: '#f97316' },
+  { id: 'notes', name: 'Notes', icon: FileText, color: '#fde047' },
   { id: 'videos', name: 'Videos', icon: Video, color: '#ef4444' },
   { id: 'projects', name: 'Projects', icon: Folder, color: '#3b82f6' },
   { id: 'mission', name: 'Mission', icon: Target, color: '#f59e0b' },
