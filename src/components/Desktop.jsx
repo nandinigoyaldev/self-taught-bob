@@ -7,33 +7,31 @@ import SearchOverlay from './SearchOverlay.jsx';
 
 // Import apps
 import AboutApp from '../apps/AboutApp.jsx';
-import VideosApp from '../apps/VideosApp.jsx';
 import ProjectsApp from '../apps/ProjectsApp.jsx';
-import MissionApp from '../apps/MissionApp.jsx';
-import JournalApp from '../apps/JournalApp.jsx';
-import StatsApp from '../apps/StatsApp.jsx';
-import AchievementsApp from '../apps/AchievementsApp.jsx';
 import TerminalApp from '../apps/TerminalApp.jsx';
 import SettingsApp from '../apps/SettingsApp.jsx';
 import CameraApp from '../apps/CameraApp.jsx';
 import CalculatorApp from '../apps/CalculatorApp.jsx';
 import NotesApp from '../apps/NotesApp.jsx';
+import TwitterApp from '../apps/TwitterApp.jsx';
+import LinkedInApp from '../apps/LinkedInApp.jsx';
+import YouTubeApp from '../apps/YouTubeApp.jsx';
+import GitHubApp from '../apps/GitHubApp.jsx';
 
 const DEFAULT_WALLPAPER = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop";
 
 const appComponents = {
   about: AboutApp,
-  videos: VideosApp,
   projects: ProjectsApp,
-  mission: MissionApp,
-  journal: JournalApp,
-  stats: StatsApp,
-  achievements: AchievementsApp,
   terminal: TerminalApp,
   settings: SettingsApp,
   camera: CameraApp,
   calculator: CalculatorApp,
   notes: NotesApp,
+  twitter: TwitterApp,
+  linkedin: LinkedInApp,
+  youtube: YouTubeApp,
+  github: GitHubApp,
 };
 
 function InteractiveWallpaper({ customWallpaper }) {
@@ -185,12 +183,12 @@ export default function Desktop() {
 
       {/* Desktop Icons */}
       <div style={{ position: 'absolute', top: '48px', left: '16px', display: 'flex', flexDirection: 'column', gap: '24px', zIndex: 10 }}>
-        {APPS.filter(app => ['calculator', 'notes', 'projects', 'terminal'].includes(app.id)).map(app => {
+        {APPS.filter(app => ['youtube', 'github', 'twitter', 'linkedin'].includes(app.id)).map(app => {
           const Icon = app.icon;
           return (
             <motion.div 
               key={app.id} 
-              onDoubleClick={() => openApp(app.id)}
+              onClick={() => openApp(app.id)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', cursor: 'pointer', width: '80px' }}

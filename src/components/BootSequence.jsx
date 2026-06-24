@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 const bootLogs = [
-  "Booting NandiniOS...",
+  "Booting BobOS...",
   "Loading core kernel modules...",
   "Mounting /projects filesystem...",
   "Loading learning logs...",
@@ -26,7 +26,7 @@ export default function BootSequence() {
 
   return (
     <div className="boot-screen">
-      <div className="boot-logo">NandiniOS</div>
+      <div className="boot-logo">BobOS</div>
       <div className="boot-logs">
         {logs.map((log, i) => (
           <div key={i} className="boot-log">{log}</div>

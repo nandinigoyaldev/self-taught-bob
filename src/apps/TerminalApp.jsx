@@ -2,24 +2,24 @@ import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const MOCK_FILE_SYSTEM = {
-  '~': ['projects', 'documents', 'about.txt', 'contact.txt'],
-  '~/projects': ['nandini-os.js', 'portfolio.html', 'backend-api.go'],
+  '~': ['projects', 'documents', 'about.txt', 'socials.txt'],
+  '~/projects': ['bob-os.js', 'portfolio.html', 'self-taught-api.go'],
   '~/documents': ['resume.pdf', 'ideas.txt'],
 };
 
 const FILE_CONTENTS = {
-  'about.txt': 'Hi! I am a self-taught developer passionate about building extraordinary things.',
-  'contact.txt': 'Twitter: @nandinigoyaldev\nGitHub: github.com/nandinigoyaldev\nLinkedIn: linkedin.com/in/nandinigoyaldev',
-  'ideas.txt': '1. Build an OS in browser\n2. Make it extra ordinary\n3. Profit?',
-  'nandini-os.js': 'console.log("You are looking at it!");',
+  'about.txt': 'Hi! I am Nandini Goyal, a passionate developer building extraordinary things.',
+  'socials.txt': 'Twitter: @nandinigoyaldev\nYouTube: youtube.com/@nandinigoyaldev\nLinkedIn: linkedin.com/in/nandinigoyaldev\nGitHub: github.com/nandinigoyaldev',
+  'ideas.txt': '1. Build BobOS in browser\n2. Make it extra ordinary\n3. Merge all socials\n4. Profit?',
+  'bob-os.js': 'console.log("You are looking at it!");',
 };
 
 const BOOT_SEQUENCE = [
-  "Initializing NandiniOS kernel...",
+  "Initializing BobOS kernel...",
   "Loading file system... OK",
   "Mounting virtual drives... OK",
   "Starting display server... OK",
-  "Welcome to NandiniOS Terminal v2.0.0",
+  "Welcome to BobOS Terminal v2.0.0",
   "Type 'help' to see available commands."
 ];
 
@@ -56,7 +56,7 @@ export default function TerminalApp() {
       const args = cmdStr.split(' ');
       const cmd = args[0].toLowerCase();
       
-      const newHistory = [...history, { type: 'user', text: `nandini@os:${cwd}$ ${cmdStr}` }];
+      const newHistory = [...history, { type: 'user', text: `bob@os:${cwd}$ ${cmdStr}` }];
       
       if (cmd === 'clear') {
         setHistory([]);
@@ -73,7 +73,7 @@ export default function TerminalApp() {
           color = '#06b6d4';
           break;
         case 'whoami':
-          response = 'visitor@nandini-os ~ $ self-taught-developer';
+          response = 'visitor@bob-os ~ $ self-taught-bob';
           color = '#eab308';
           break;
         case 'date':
@@ -164,7 +164,7 @@ export default function TerminalApp() {
       ))}
       {!isBooting && (
         <div style={{ display: 'flex', alignItems: 'center', marginTop: '0.5rem' }}>
-          <span style={{ marginRight: '0.5rem', color: '#22c55e', textShadow: '0 0 2px rgba(34,197,94,0.5)' }}>nandini@os:{cwd}$</span>
+          <span style={{ marginRight: '0.5rem', color: '#22c55e', textShadow: '0 0 2px rgba(34,197,94,0.5)' }}>bob@os:{cwd}$</span>
           <input 
             ref={inputRef}
             autoFocus

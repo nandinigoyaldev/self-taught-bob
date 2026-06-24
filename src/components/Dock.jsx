@@ -1,17 +1,17 @@
 import { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Video, Folder, Target, Book, BarChart, Trophy, Terminal, User, Settings as SettingsIcon, Camera, Calculator, FileText } from 'lucide-react';
+import { Folder, Terminal, User, Settings as SettingsIcon, Camera, Calculator, FileText } from 'lucide-react';
+import { FaTwitter, FaLinkedin, FaYoutube, FaGithub } from 'react-icons/fa';
 
 export const APPS = [
-  { id: 'calculator', name: 'Calculator', icon: Calculator, color: '#f97316' },
-  { id: 'notes', name: 'Notes', icon: FileText, color: '#fde047' },
-  { id: 'videos', name: 'Videos', icon: Video, color: '#ef4444' },
+  { id: 'youtube', name: 'YouTube', icon: FaYoutube, color: '#FF0000' },
+  { id: 'github', name: 'GitHub', icon: FaGithub, color: '#ffffff' },
+  { id: 'twitter', name: 'Twitter', icon: FaTwitter, color: '#1DA1F2' },
+  { id: 'linkedin', name: 'LinkedIn', icon: FaLinkedin, color: '#0A66C2' },
   { id: 'projects', name: 'Projects', icon: Folder, color: '#3b82f6' },
-  { id: 'mission', name: 'Mission', icon: Target, color: '#f59e0b' },
-  { id: 'journal', name: 'Journal', icon: Book, color: '#10b981' },
-  { id: 'stats', name: 'Stats', icon: BarChart, color: '#8b5cf6' },
-  { id: 'achievements', name: 'Achievements', icon: Trophy, color: '#eab308' },
   { id: 'terminal', name: 'Terminal', icon: Terminal, color: '#06b6d4' },
+  { id: 'notes', name: 'Notes', icon: FileText, color: '#fde047' },
+  { id: 'calculator', name: 'Calculator', icon: Calculator, color: '#f97316' },
   { id: 'camera', name: 'Camera', icon: Camera, color: '#ec4899' },
   { id: 'about', name: 'About', icon: User, color: '#6366f1' },
   { id: 'settings', name: 'Settings', icon: SettingsIcon, color: '#94a3b8' },

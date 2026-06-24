@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { FileText, Save } from 'lucide-react';
 
 export default function NotesApp() {
-  const [note, setNote] = useState(() => localStorage.getItem('nandini-notes') || '');
+  const [note, setNote] = useState(() => localStorage.getItem('bob-notes') || '');
   const [saveStatus, setSaveStatus] = useState('');
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      localStorage.setItem('nandini-notes', note);
+      localStorage.setItem('bob-notes', note);
       setSaveStatus('Saved');
       setTimeout(() => setSaveStatus(''), 2000);
     }, 1000);
@@ -30,7 +30,8 @@ export default function NotesApp() {
       <textarea 
         value={note}
         onChange={(e) => setNote(e.target.value)}
-        placeholder="Type your notes here... They will be saved automatically."
+        placeholder="Self Taught Bob's Notes...
+Type your ideas here! They auto-save."
         style={{
           flex: 1,
           width: '100%',

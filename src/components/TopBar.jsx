@@ -54,7 +54,7 @@ export default function TopBar({ onSearchClick, openApp, closeAllApps }) {
             onClick={() => setMenuOpen(!menuOpen)}
           >
             <Apple size={16} />
-            <span style={{ marginLeft: '4px' }}>NandiniOS</span>
+            <span style={{ marginLeft: '4px' }}>BobOS</span>
           </div>
 
           <AnimatePresence>
