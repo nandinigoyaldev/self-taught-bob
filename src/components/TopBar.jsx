@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Apple, Search, Wifi, Battery, BatteryCharging, BatteryFull, BatteryLow, Volume2, ChevronRight } from 'lucide-react';
+import { Apple, Search, Wifi, Battery, BatteryCharging, BatteryFull, BatteryLow, Volume2, ChevronRight, Bell } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import NotificationCenter from './NotificationCenter.jsx';
 
 export default function TopBar({ onSearchClick, openApp, closeAllApps }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -8,6 +9,7 @@ export default function TopBar({ onSearchClick, openApp, closeAllApps }) {
   const [battery, setBattery] = useState({ level: 1, charging: false });
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const [actionCenterOpen, setActionCenterOpen] = useState(false);
+  const [notificationsOpen, setNotificationsOpen] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
@@ -95,6 +97,10 @@ export default function TopBar({ onSearchClick, openApp, closeAllApps }) {
             <Search size={16} />
           </div>
           
+          <div className="top-bar-item" onClick={() => setNotificationsOpen(true)} style={{ cursor: 'pointer' }}>
+            <Bell size={16} />
+          </div>
+          
           <div 
             className="top-bar-item"
             style={{ display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer' }}
@@ -106,6 +112,8 @@ export default function TopBar({ onSearchClick, openApp, closeAllApps }) {
           </div>
         </div>
       </div>
+
+      <NotificationCenter isOpen={notificationsOpen} onClose={() => setNotificationsOpen(false)} />
 
       <AnimatePresence>
         {actionCenterOpen && (

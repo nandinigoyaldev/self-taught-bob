@@ -6,6 +6,7 @@ import Window from './Window.jsx';
 import SearchOverlay from './SearchOverlay.jsx';
 import ContextMenu from './ContextMenu.jsx';
 import Widgets from './Widgets.jsx';
+import DesktopFiles from './DesktopFiles.jsx';
 
 // Import apps
 import AboutApp from '../apps/AboutApp.jsx';
@@ -19,6 +20,9 @@ import TwitterApp from '../apps/TwitterApp.jsx';
 import LinkedInApp from '../apps/LinkedInApp.jsx';
 import YouTubeApp from '../apps/YouTubeApp.jsx';
 import GitHubApp from '../apps/GitHubApp.jsx';
+import MusicApp from '../apps/MusicApp.jsx';
+import FinderApp from '../apps/FinderApp.jsx';
+import BrowserApp from '../apps/BrowserApp.jsx';
 
 const DEFAULT_WALLPAPER = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop";
 
@@ -34,6 +38,9 @@ const appComponents = {
   linkedin: LinkedInApp,
   youtube: YouTubeApp,
   github: GitHubApp,
+  music: MusicApp,
+  finder: FinderApp,
+  browser: BrowserApp,
 };
 
 function InteractiveWallpaper({ customWallpaper }) {
@@ -194,34 +201,7 @@ export default function Desktop() {
         closeAllApps={closeAllApps}
       />
 
-      {/* Desktop Icons */}
-      <div style={{ position: 'absolute', top: '48px', left: '16px', display: 'flex', flexDirection: 'column', gap: '24px', zIndex: 10 }}>
-        {APPS.filter(app => ['youtube', 'github', 'twitter', 'linkedin'].includes(app.id)).map(app => {
-          const Icon = app.icon;
-          return (
-            <motion.div 
-              key={app.id} 
-              onClick={() => openApp(app.id)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', cursor: 'pointer', width: '80px' }}
-            >
-              <div style={{ 
-                padding: '12px', borderRadius: '12px', background: 'rgba(255,255,255,0.1)', 
-                backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.2)', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' 
-              }}>
-                <Icon size={32} color={app.color || 'white'} style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))' }} />
-              </div>
-              <span style={{ 
-                fontSize: '0.75rem', textAlign: 'center', fontWeight: 500, background: 'rgba(0,0,0,0.3)', 
-                padding: '2px 8px', borderRadius: '9999px', textShadow: '0 1px 2px rgba(0,0,0,0.5)' 
-              }}>
-                {app.name}
-              </span>
-            </motion.div>
-          );
-        })}
-      </div>
+      <DesktopFiles openApp={openApp} />
 
       <ContextMenu 
         x={contextMenu?.x || 0}
@@ -254,7 +234,7 @@ export default function Desktop() {
             onMinimize={() => minimizeApp(app.id)}
             onFocus={() => focusApp(app.id)}
           >
-            <AppComponent settings={settings} updateSettings={updateSettings} />
+            <AppComponent settings={settings} updateSettings={updateSettings} openApp={openApp} />
           </Window>
         );
       })}

@@ -1,10 +1,13 @@
 import { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Folder, Terminal, User, Settings as SettingsIcon, Camera, Calculator, FileText } from 'lucide-react';
-import { FaTwitter, FaLinkedin, FaYoutube, FaGithub } from 'react-icons/fa';
+import { Folder, Terminal, User, Settings as SettingsIcon, Camera, Calculator, FileText, Music, FolderOpen, Compass } from 'lucide-react';
+import { FaTwitter, FaLinkedin, FaYoutube, FaGithub, FaChrome } from 'react-icons/fa';
 
 export const APPS = [
+  { id: 'finder', name: 'Finder', icon: Compass, color: '#3b82f6' },
+  { id: 'browser', name: 'Browser', icon: FaChrome, color: '#ef4444' },
   { id: 'youtube', name: 'YouTube', icon: FaYoutube, color: '#FF0000' },
+  { id: 'music', name: 'Music', icon: Music, color: '#c084fc' },
   { id: 'github', name: 'GitHub', icon: FaGithub, color: '#ffffff' },
   { id: 'twitter', name: 'Twitter', icon: FaTwitter, color: '#1DA1F2' },
   { id: 'linkedin', name: 'LinkedIn', icon: FaLinkedin, color: '#0A66C2' },
