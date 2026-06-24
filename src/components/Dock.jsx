@@ -19,14 +19,12 @@ export const APPS = [
 
 function DockIcon({ app, isActive, openApp, mouseX, baseSize }) {
   const ref = useRef(null);
-  
+
   // Distance from mouse to center of this icon
   const distance = useTransform(mouseX, (val) => {
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
     return val - bounds.x - bounds.width / 2;
   });
-
-  // Calculate scaling based on distance. If distance is small, scale goes up to ~1.5x
   const scaleSync = useTransform(distance, [-150, 0, 150], [1, 1.6, 1]);
   const scale = useSpring(scaleSync, { mass: 0.1, stiffness: 150, damping: 12 });
 
@@ -36,16 +34,18 @@ function DockIcon({ app, isActive, openApp, mouseX, baseSize }) {
   return (
     <motion.div
       ref={ref}
-      style={{ width, height: width }}
-      className={`dock-icon ${isActive ? 'active' : ''}`}
+      style={{ width, height: baseSize, display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}
       onClick={() => openApp(app.id)}
       title={app.name}
-      whileTap={{ scale: 0.8 }}
       initial={{ y: 20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
     >
-      <motion.div style={{ scale, transformOrigin: 'bottom' }}>
+      <motion.div
+        className={`dock-icon ${isActive ? 'active' : ''}`}
+        style={{ scale, transformOrigin: 'bottom', width: baseSize, height: baseSize }}
+        whileTap={{ scale: 0.8 }}
+      >
         <app.icon color={app.color} size={baseSize * 0.5} />
       </motion.div>
     </motion.div>
@@ -55,7 +55,7 @@ function DockIcon({ app, isActive, openApp, mouseX, baseSize }) {
 export default function Dock({ openApp, openAppsList, settings }) {
   const position = settings?.dockPosition || 'bottom';
   const size = settings?.dockSize || 50;
-  
+
   const mouseX = useMotionValue(Infinity);
 
   const getContainerStyle = () => {
@@ -80,18 +80,18 @@ export default function Dock({ openApp, openAppsList, settings }) {
   };
 
   return (
-    <motion.div 
-      className="dock-container" 
+    <motion.div
+      className="dock-container"
       style={getContainerStyle()}
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
-      initial={{ 
-        y: position === 'bottom' ? 100 : '-50%', 
-        x: position === 'bottom' ? '-50%' : (position === 'left' ? -100 : 100) 
+      initial={{
+        y: position === 'bottom' ? 100 : '-50%',
+        x: position === 'bottom' ? '-50%' : (position === 'left' ? -100 : 100)
       }}
-      animate={{ 
-        y: position === 'bottom' ? 0 : '-50%', 
-        x: position === 'bottom' ? '-50%' : 0 
+      animate={{
+        y: position === 'bottom' ? 0 : '-50%',
+        x: position === 'bottom' ? '-50%' : 0
       }}
       transition={{ type: 'spring', stiffness: 200, damping: 20, delay: 0.5 }}
     >

@@ -143,19 +143,26 @@ export default function Window({
         onDragEnd={handleDragEnd}
         onMouseDownCapture={onFocus}
         initial={{ opacity: 0, scale: 0.8, y: 50 }}
-        animate={isMinimized ? { opacity: 0, scale: 0.8, y: 100 } : { 
+        animate={isMinimized ? { 
+          opacity: 0, 
+          scale: 0, 
+          x: window.innerWidth / 2 - (size.w / 2), 
+          y: window.innerHeight, 
+          filter: 'blur(10px)'
+        } : { 
           opacity: 1, 
           scale: 1, 
           x: pos.x, 
           y: pos.y, 
           width: size.w, 
           height: size.h,
-          borderRadius: isMaximized ? '0px' : '14px'
+          borderRadius: isMaximized ? '0px' : '14px',
+          filter: 'blur(0px)'
         }}
         transition={{ 
           type: "spring", 
-          stiffness: 300, 
-          damping: 30,
+          stiffness: isMinimized ? 200 : 300, 
+          damping: isMinimized ? 25 : 30,
           opacity: { duration: 0.2 }
         }}
         style={{

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { ExternalLink, RefreshCw } from 'lucide-react';
 import { FaTwitter } from 'react-icons/fa';
-import { motion } from 'framer-motion';
 import { TwitterTimelineEmbed } from 'react-twitter-embed';
 
 export default function TwitterApp() {
@@ -25,7 +24,7 @@ export default function TwitterApp() {
             <RefreshCw size={20} />
           </button>
           <a 
-            href="https://twitter.com/nandinigoyaldev" 
+            href="https://x.com/nandinigoyaldev" 
             target="_blank" 
             rel="noreferrer"
             style={{ display: 'flex', alignItems: 'center', gap: '4px', background: '#1DA1F2', color: 'white', padding: '6px 12px', borderRadius: '99px', textDecoration: 'none', fontSize: '0.85rem', fontWeight: 'bold' }}
