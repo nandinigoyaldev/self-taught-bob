@@ -4,6 +4,8 @@ import TopBar from './TopBar.jsx';
 import Dock, { APPS } from './Dock.jsx';
 import Window from './Window.jsx';
 import SearchOverlay from './SearchOverlay.jsx';
+import ContextMenu from './ContextMenu.jsx';
+import Widgets from './Widgets.jsx';
 
 // Import apps
 import AboutApp from '../apps/AboutApp.jsx';
@@ -158,6 +160,17 @@ export default function Desktop() {
     closeContextMenu();
   };
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsSearchOpen(true);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   return (
     <div 
       className="desktop-environment"
@@ -210,32 +223,22 @@ export default function Desktop() {
         })}
       </div>
 
-      {/* Animated Context Menu */}
-      <AnimatePresence>
-        {contextMenu && (
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95, y: -5 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: -5 }}
-            transition={{ duration: 0.1 }}
-            className="menu-dropdown"
-            style={{ 
-              position: 'absolute', zIndex: 9999, display: 'flex', flexDirection: 'column', 
-              padding: '6px', borderRadius: '12px', minWidth: '180px', top: contextMenu.y, left: contextMenu.x,
-              background: 'rgba(24, 24, 27, 0.85)', backdropFilter: 'blur(25px)', border: '1px solid rgba(255,255,255,0.1)'
-            }}
-            onContextMenu={(e) => e.preventDefault()}
-          >
-            <div className="menu-item" onClick={triggerWallpaperChange}>Change Wallpaper</div>
-            <div className="menu-item" onClick={resetWallpaper}>Interactive Wallpaper</div>
-            <div className="menu-divider" />
-            <div className="menu-item" onClick={() => { openApp('settings'); closeContextMenu(); }} style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span>System Settings</span>
-              <span style={{ fontSize: '0.75rem', opacity: 0.5 }}>⌘,</span>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <ContextMenu 
+        x={contextMenu?.x || 0}
+        y={contextMenu?.y || 0}
+        isVisible={!!contextMenu}
+        onClose={closeContextMenu}
+        onAction={(action) => {
+          if (action === 'settings') {
+            triggerWallpaperChange();
+          } else if (action === 'new_folder') {
+            openApp('projects');
+          } else if (action === 'about') {
+            openApp('about');
+          }
+          closeContextMenu();
+        }}
+      />
       
       {openApps.map(app => {
         const appInfo = APPS.find(a => a.id === app.id);
@@ -255,6 +258,8 @@ export default function Desktop() {
           </Window>
         );
       })}
+
+      <Widgets />
 
       <Dock openApp={openApp} openAppsList={openApps} settings={settings} />
 

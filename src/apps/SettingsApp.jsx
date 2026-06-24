@@ -59,25 +59,50 @@ export default function SettingsApp({ settings, updateSettings }) {
           <div style={cardStyle}>
             <div style={settingRowStyle}>
               <div>
-                <div style={{ fontWeight: 500 }}>Desktop Wallpaper</div>
-                <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Upload a custom image to set as your background.</div>
+                <div style={{ fontWeight: 500 }}>Preset Themes</div>
+                <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Choose a gorgeous predefined wallpaper.</div>
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <button 
+                  onClick={() => {
+                    localStorage.removeItem('nandini-wallpaper');
+                    window.location.reload();
+                  }}
+                  style={{ ...buttonStyle, background: 'rgba(147, 51, 234, 0.2)', color: '#c084fc', border: '1px solid rgba(147, 51, 234, 0.4)' }}
+                >
+                  Interactive
+                </button>
+                <button 
+                  onClick={() => {
+                    localStorage.setItem('nandini-wallpaper', 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop');
+                    window.location.reload();
+                  }}
+                  style={{ ...buttonStyle, background: 'rgba(255, 255, 255, 0.1)', color: 'white' }}
+                >
+                  Abstract
+                </button>
+                <button 
+                  onClick={() => {
+                    localStorage.setItem('nandini-wallpaper', 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=2500&auto=format&fit=crop');
+                    window.location.reload();
+                  }}
+                  style={{ ...buttonStyle, background: 'rgba(59, 130, 246, 0.1)', color: 'var(--accent-blue)' }}
+                >
+                  Landscape
+                </button>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem' }}>
+              <div>
+                <div style={{ fontWeight: 500 }}>Custom Wallpaper</div>
+                <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Upload your own image.</div>
               </div>
               <button 
                 onClick={() => document.getElementById('wallpaper-upload')?.click()}
                 style={buttonStyle}
               >
                 Upload Image
-              </button>
-            </div>
-            <div style={{ marginTop: '1rem' }}>
-              <button 
-                onClick={() => {
-                  localStorage.removeItem('nandini-wallpaper');
-                  window.location.reload();
-                }}
-                style={{ ...buttonStyle, background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', border: '1px solid rgba(239, 68, 68, 0.3)' }}
-              >
-                Reset to Default
               </button>
             </div>
           </div>

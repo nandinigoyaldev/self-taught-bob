@@ -410,3 +410,44 @@ body {
   background: var(--border-glass);
   margin: 0.3rem 0;
 }
+
+/* Context Menu */
+.context-menu {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  min-width: 220px;
+}
+
+.context-menu-inner {
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+}
+
+.context-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 4px;
+  text-align: left;
+  transition: all 0.1s;
+}
+
+.context-menu-item:hover {
+  background: var(--accent-blue);
+  color: white;
+}
+
+.context-menu-divider {
+  height: 1px;
+  background: var(--border-glass-light);
+  margin: 4px 0;
+}
