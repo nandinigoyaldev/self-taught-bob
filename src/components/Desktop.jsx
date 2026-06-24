@@ -12,6 +12,8 @@ import JournalApp from '../apps/JournalApp.jsx';
 import StatsApp from '../apps/StatsApp.jsx';
 import AchievementsApp from '../apps/AchievementsApp.jsx';
 import TerminalApp from '../apps/TerminalApp.jsx';
+import SettingsApp from '../apps/SettingsApp.jsx';
+import CameraApp from '../apps/CameraApp.jsx';
 
 const appComponents = {
   about: AboutApp,
@@ -22,11 +24,25 @@ const appComponents = {
   stats: StatsApp,
   achievements: AchievementsApp,
   terminal: TerminalApp,
+  settings: SettingsApp,
+  camera: CameraApp,
 };
 
 export default function Desktop() {
   const [openApps, setOpenApps] = useState([]); // { id, zIndex, minimized }
   const [activeZIndex, setActiveZIndex] = useState(1);
+
+  // Settings state
+  const [settings, setSettings] = useState(() => {
+    const saved = localStorage.getItem('nandini-settings');
+    return saved ? JSON.parse(saved) : { dockPosition: 'bottom', dockSize: 50 };
+  });
+
+  const updateSettings = (newSettings) => {
+    const updated = { ...settings, ...newSettings };
+    setSettings(updated);
+    localStorage.setItem('nandini-settings', JSON.stringify(updated));
+  };
 
   const openApp = (appId) => {
     const existing = openApps.find(a => a.id === appId);
@@ -106,12 +122,12 @@ export default function Desktop() {
             onMinimize={() => minimizeApp(app.id)}
             onFocus={() => focusApp(app.id)}
           >
-            <AppComponent />
+            <AppComponent settings={settings} updateSettings={updateSettings} />
           </Window>
         );
       })}
 
-      <Dock openApp={openApp} openAppsList={openApps} />
+      <Dock openApp={openApp} openAppsList={openApps} settings={settings} />
     </div>
   );
 }

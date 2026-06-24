@@ -14,11 +14,11 @@ export default function Window({
 }) {
   const [pos, setPos] = useState({ x: window.innerWidth / 2 - defaultWidth / 2 + (zIndex * 20), y: window.innerHeight / 2 - defaultHeight / 2 + (zIndex * 20) });
   const [isDragging, setIsDragging] = useState(false);
-  const dragRef = useRef(null);
+  const [isMaximized, setIsMaximized] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
-      if (isDragging) {
+      if (isDragging && !isMaximized) {
         setPos(prev => ({
           x: prev.x + e.movementX,
           y: prev.y + e.movementY
@@ -39,29 +39,32 @@ export default function Window({
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [isDragging]);
+  }, [isDragging, isMaximized]);
 
   return (
     <div 
       className={`os-window glass-panel ${isMinimized ? 'minimized' : ''}`}
       style={{
-        left: pos.x,
-        top: pos.y,
-        width: defaultWidth,
-        height: defaultHeight,
+        left: isMaximized ? 0 : pos.x,
+        top: isMaximized ? 32 : pos.y, // 32px is TopBar height
+        width: isMaximized ? '100vw' : defaultWidth,
+        height: isMaximized ? 'calc(100vh - 32px)' : defaultHeight,
         zIndex: zIndex,
-        position: 'absolute'
+        position: 'absolute',
+        borderRadius: isMaximized ? '0' : '12px',
+        transition: isDragging ? 'none' : 'transform 0.2s ease, opacity 0.2s ease, width 0.3s ease, height 0.3s ease, left 0.3s ease, top 0.3s ease, border-radius 0.3s ease'
       }}
       onMouseDownCapture={onFocus}
     >
       <div 
         className="window-header"
-        onMouseDown={() => setIsDragging(true)}
+        onMouseDown={() => !isMaximized && setIsDragging(true)}
+        onDoubleClick={() => setIsMaximized(!isMaximized)}
       >
         <div className="window-controls">
           <div className="window-control control-close" onClick={(e) => { e.stopPropagation(); onClose(); }} />
           <div className="window-control control-minimize" onClick={(e) => { e.stopPropagation(); onMinimize(); }} />
-          <div className="window-control control-maximize" />
+          <div className="window-control control-maximize" onClick={(e) => { e.stopPropagation(); setIsMaximized(!isMaximized); }} />
         </div>
         <div className="window-title">{title}</div>
         <div style={{ width: '44px' }}></div> {/* Spacer for balance */}

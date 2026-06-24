@@ -72,8 +72,8 @@ export default function AboutApp() {
 
       <div>
         <h3 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>Core Modules (Skills)</h3>
-        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-          {['JavaScript (ES6+)', 'React & Next.js', 'Node.js', 'System Architecture', 'UI/UX Design', 'CSS/Tailwind'].map(skill => (
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
+          {['JavaScript (ES6+)', 'React & Next.js', 'Node.js', 'Python', 'Flask', 'OpenCV', 'Tailwind CSS'].map(skill => (
             <span key={skill} style={{
               padding: '0.5rem 1rem',
               background: 'rgba(59, 130, 246, 0.1)',
@@ -85,6 +85,37 @@ export default function AboutApp() {
               {skill}
             </span>
           ))}
+        </div>
+      </div>
+
+      <div style={{
+        background: 'rgba(255,255,255,0.03)',
+        padding: '1.5rem',
+        borderRadius: '12px',
+        border: '1px solid var(--border-glass-light)',
+      }}>
+        <h3 style={{ marginBottom: '1.5rem', color: 'var(--text-primary)' }}>Experience & Roles</h3>
+        
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          <div style={{ paddingLeft: '1rem', borderLeft: '2px solid var(--accent-cyan)' }}>
+            <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--accent-cyan)' }}>Founder @ CDN IGNOU</h4>
+            <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Community Building</p>
+          </div>
+          
+          <div style={{ paddingLeft: '1rem', borderLeft: '2px solid var(--accent-purple)' }}>
+            <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--accent-purple)' }}>Creator @ Self Taught Bob</h4>
+            <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Mentoring & Content</p>
+          </div>
+
+          <div style={{ paddingLeft: '1rem', borderLeft: '2px solid var(--accent-blue)' }}>
+            <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--accent-blue)' }}>Top 25 @ Apertre (SSOC / GSSOC)</h4>
+            <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Open Source Contributions</p>
+          </div>
+
+          <div style={{ paddingLeft: '1rem', borderLeft: '2px solid var(--text-muted)' }}>
+            <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--text-primary)' }}>GeeksforGeeks & Work2Hire</h4>
+            <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Software Development</p>
+          </div>
         </div>
       </div>
     </div>

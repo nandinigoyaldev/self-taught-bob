@@ -10,29 +10,31 @@ const FILE_SYSTEM = {
       type: 'folder',
       children: [
         { name: 'nandini-os.exe', type: 'file', desc: 'The operating system you are currently using.' },
-        { name: 'algo-visualizer.js', type: 'file', desc: 'Sorting algorithms visualized in React.' },
+        { name: 'portfolio-v1.jsx', type: 'file', desc: 'Previous version of the portfolio.' },
       ]
     },
     {
-      name: 'Experiments',
+      name: 'Tech Stack',
       type: 'folder',
       children: [
-        { name: 'webgl-shaders.glsl', type: 'file', desc: 'Custom shaders written in WebGL.' },
-        { name: 'rust-cli.rs', type: 'file', desc: 'A fast CLI tool for parsing logs.' },
+        { name: 'react-nextjs.md', type: 'file', desc: 'Frontend Frameworks' },
+        { name: 'python-flask.md', type: 'file', desc: 'Backend Stack' },
+        { name: 'opencv-mediapipe.md', type: 'file', desc: 'Computer Vision' },
       ]
     },
     {
       name: 'Open Source',
       type: 'folder',
       children: [
-        { name: 'react-contributions.md', type: 'file', desc: 'Merged PRs to the React core repository.' }
+        { name: 'apertre-contributions.md', type: 'file', desc: 'Merged PRs to Apertre via SSOC/GSSOC.' }
       ]
     },
     {
-      name: 'Future Ideas',
+      name: 'Community',
       type: 'folder',
       children: [
-        { name: 'ai-companion.py', type: 'file', desc: 'A local LLM wrapper for terminal productivity.' }
+        { name: 'cdn-ignou-logs.txt', type: 'file', desc: 'Logs from founding CDN IGNOU.' },
+        { name: 'self-taught-bob.mp4', type: 'file', desc: 'Content creation and mentoring material.' }
       ]
     }
   ]
